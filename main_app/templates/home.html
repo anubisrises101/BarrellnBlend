@@ -1,0 +1,29 @@
+<nav>
+  <ul>
+    {% if user.is_authenticated %}
+      <li><a href="{% url 'home' %}">Home</a></li>
+      {% comment %} <li><a href="{% url 'about' %}">About</a></li> {% endcomment %}
+      <li>
+        <form id="logout-form" method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button type="submit">Log out</button>
+        </form>
+      </li>
+    {% else %}
+      {% comment %} <li><a href="{% url 'about' %}">About</a></li> {% endcomment %}
+      <li><a href="{% url 'home' %}">Login</a></li>
+      <li><a href="{% url 'signup' %}">Sign Up</a></li>
+    {% endif %}
+  </ul>
+</nav>
+{% if not user.is_authenticated %}
+<section>
+  <form action="{% url 'home' %}" method="post" class="login">
+    <h1>Login</h1>
+    {% csrf_token %} {{ form.as_p }}
+    <input type="hidden" name="next" value="{{ next }}" />
+    <button type="submit" class="btn submit">Login</button>
+  </form>
+</section>
+
+{% endif %}
