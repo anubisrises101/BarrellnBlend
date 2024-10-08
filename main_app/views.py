@@ -34,3 +34,6 @@ def signup(request):
     #     'signup.html',
     #     {'form': form, 'error_message': error_message}
     # )
+    
+# def login(request):
+#     return render(request, 'registration/login.html')
