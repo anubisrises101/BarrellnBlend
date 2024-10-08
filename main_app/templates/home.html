@@ -11,4 +11,16 @@
     alt="Text reads: Cat Collector"
   /> {% endcomment %}
 </section>
+
+<section class="ingredient-form-container">
+  <h2>Enter Your Ingredients for a Cocktail Recipe</h2>
+  <form method="post" action="{% url 'generate_drink' %}">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="ingredients">Ingredients:</label>
+      <textarea id="ingredients" name="ingredients" rows="4" cols="50" required></textarea>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</section>
 {% endblock %}

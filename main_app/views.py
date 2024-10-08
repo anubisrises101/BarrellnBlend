@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+import os, environ
+
+OPENAI_API_KEY = os.environ['OPENAI_API_KEY']
 # Create your views here.
 
 class Home(LoginView):
@@ -37,3 +40,6 @@ def signup(request):
     
 # def login(request):
 #     return render(request, 'registration/login.html')
+
+def generate_drink(request):
+    return render(request, 'generate_drink.html')
