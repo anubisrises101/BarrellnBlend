@@ -16,6 +16,7 @@ import environ
 
 environ.Env()
 environ.Env.read_env()
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', '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')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
