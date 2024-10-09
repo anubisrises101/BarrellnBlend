@@ -7,9 +7,11 @@ from django.contrib.auth.forms import UserCreationForm
 import os, environ, openai
 from .models import Drink
 from django.conf import settings
+from openai import OpenAI
 
 openai.api_key = settings.OPENAI_API_KEY
 # Create your views here.
+client = OpenAI()
 
 
 class Home(LoginView):
@@ -47,12 +49,19 @@ def signup(request):
 
 
 def generate_drink_prompt(user_input):
-    response = openai.Completion.create(
-        model="text-davinci-003",
-        prompt=f"Create a cocktail drink recipe with the following ingredients: {user_input}. Include a image, ingredients, instructions, and a garnish.",
+    response = openai.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "system", "content": "You are a cocktail recipe creator. Your task is to create a drink recipe based on the user's ingredients."},
+            {
+                "role": "user",
+                "content": f"Create a cocktail drink recipe using only the following ingredients: {user_input}. Include an image, ingredients, instructions, and a garnish.",
+            },
+        ],
         max_tokens=150,
     )
-    return response.choices[0].text.strip()
+    print(response)
+    return response.choices[0].message.content.strip()
 
 
 @csrf_exempt
@@ -62,12 +71,13 @@ def generate_drink(request):
         if user_ingredients:
             drink_recipe = generate_drink_prompt(user_ingredients)
             recipe_parts = drink_recipe.split("\n\n")
-            recipe_ingredients = recipe_parts[0] if len(recipe_parts) > 0 else ""
-            recipe_instructions = recipe_parts[1] if len(recipe_parts) > 1 else ""
-            recipe_garnish = recipe_parts[2] if len(recipe_parts) > 2 else ""
+            recipe_name = recipe_parts[0] if len(recipe_parts) > 0 else ""
+            recipe_ingredients = recipe_parts[1] if len(recipe_parts) > 1 else ""
+            recipe_instructions = recipe_parts[2] if len(recipe_parts) > 2 else ""
+            recipe_garnish = recipe_parts[3] if len(recipe_parts) > 3 else ""
 
             drink = Drink.objects.create(
-                name="Generated Drink",
+                name=recipe_name,
                 ingredients=recipe_ingredients,
                 instructions=recipe_instructions,
                 garnish=recipe_garnish,
