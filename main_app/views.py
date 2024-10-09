@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-import os, environ, openai
+import os, environ, openai, re
 from .models import Drink
 from django.conf import settings
 from openai import OpenAI
@@ -55,7 +55,7 @@ def generate_drink_prompt(user_input):
             {"role": "system", "content": "You are a cocktail recipe creator. Your task is to create a drink recipe based on the user's ingredients."},
             {
                 "role": "user",
-                "content": f"Create a cocktail drink recipe using only the following ingredients: {user_input}. Include an image, ingredients, instructions, and a garnish.",
+                "content": f"Create a cocktail using only: {user_input}. Include the drink name, ingredients, instructions, and garnish."
             },
         ],
         max_tokens=150,
@@ -70,6 +70,12 @@ def generate_drink(request):
         user_ingredients = request.POST.get("ingredients")
         if user_ingredients:
             drink_recipe = generate_drink_prompt(user_ingredients)
+            # potentially remove markdown text
+            drink_recipe = drink_recipe.replace("**", "").replace("*", "").replace("#", "").replace("##", "").replace("###", "").replace("####", "").replace("#####", "").replace("######", "").replace(">", "").replace("Ingredients:", "").replace("Instructions:", "").replace("Garnish:", "")
+            drink_recipe = re.sub(r"\d+\. ", "<br>🍸 ", drink_recipe)
+            drink_recipe = re.sub(r"- ", "<br>🥃 ", drink_recipe)
+            
+            # drink_recipe.replace(r"\d+\. ", "<br><br><br>")
             recipe_parts = drink_recipe.split("\n\n")
             recipe_name = recipe_parts[0] if len(recipe_parts) > 0 else ""
             recipe_ingredients = recipe_parts[1] if len(recipe_parts) > 1 else ""

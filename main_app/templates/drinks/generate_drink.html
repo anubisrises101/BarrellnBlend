@@ -1,9 +1,7 @@
 {% extends 'base.html' %} {% load static %} {% block head %}
 <link rel="stylesheet" href="{% static 'css/cats/cat-index.css' %}" />
-{% endblock %} {% block content %}
-
-{% if error %}
-  <p style="color: red;">{{ error }}</p>
+{% endblock %} {% block content %} {% if error %}
+<p style="color: red">{{ error }}</p>
 {% endif %}
 
 <section class="ingredient-form-container">
@@ -12,7 +10,13 @@
     {% csrf_token %}
     <div class="form-group">
       <label for="ingredients">Ingredients:</label>
-      <textarea id="ingredients" name="ingredients" rows="4" cols="50" required></textarea>
+      <textarea
+        id="ingredients"
+        name="ingredients"
+        rows="4"
+        cols="50"
+        required
+      ></textarea>
     </div>
     <button type="submit">Submit</button>
   </form>
@@ -21,14 +25,14 @@
 <section class="drinks-list">
   <h2>Generated Drinks</h2>
   <ul>
-    {% for drink in drinks %}
-      <li>
-        <strong>{{ drink.name }}</strong><br>
-        <strong>Ingredients:</strong> {{ drink.ingredients }}<br>
-        <strong>Instructions:</strong> {{ drink.instructions }}<br>
-        <strong>Garnish:</strong> {{ drink.garnish }}
-      </li>
-    {% endfor %}
+    {% if drinks %}
+    <li>
+      <strong>{{ drinks.last.name }}</strong><br />
+      <strong>Ingredients:</strong> {{ drinks.last.ingredients|safe }}<br />
+      <strong>Instructions:</strong> {{ drinks.last.instructions|safe }}<br />
+      <strong>Garnish:</strong> {{ drinks.last.garnish|safe }}
+    </li>
+    {% endif %}
   </ul>
 </section>
 
