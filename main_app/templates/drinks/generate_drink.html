@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/cats/cat-index.css' %}" />
+{% endblock %} {% block content %}
+
+{% if error %}
+  <p style="color: red;">{{ error }}</p>
+{% endif %}
+
+<section class="ingredient-form-container">
+  <h2>Enter Your Ingredients for a Cocktail Recipe</h2>
+  <form method="post" action="{% url 'generate_drink' %}">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="ingredients">Ingredients:</label>
+      <textarea id="ingredients" name="ingredients" rows="4" cols="50" required></textarea>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</section>
+
+<section class="drinks-list">
+  <h2>Generated Drinks</h2>
+  <ul>
+    {% for drink in drinks %}
+      <li>
+        <strong>{{ drink.name }}</strong><br>
+        <strong>Ingredients:</strong> {{ drink.ingredients }}<br>
+        <strong>Instructions:</strong> {{ drink.instructions }}<br>
+        <strong>Garnish:</strong> {{ drink.garnish }}
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+
+{% endblock %}
