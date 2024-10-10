@@ -55,7 +55,7 @@ def generate_drink_prompt(user_input):
             {"role": "system", "content": "You are a cocktail recipe creator. Your task is to create a drink recipe based on the user's ingredients."},
             {
                 "role": "user",
-                "content": f"Create a cocktail using only: {user_input}. Include the drink name, ingredients, instructions, and garnish."
+                "content": f"Create a cocktail using only: {user_input}. Include a picture, the drink name, ingredients, instructions, and garnish. Use complete sentences.",
             },
         ],
         max_tokens=150,
@@ -71,7 +71,7 @@ def generate_drink(request):
         if user_ingredients:
             drink_recipe = generate_drink_prompt(user_ingredients)
             # potentially remove markdown text
-            drink_recipe = drink_recipe.replace("**", "").replace("*", "").replace("#", "").replace("##", "").replace("###", "").replace("####", "").replace("#####", "").replace("######", "").replace(">", "").replace("Ingredients:", "").replace("Instructions:", "").replace("Garnish:", "")
+            drink_recipe = drink_recipe.replace("**", "").replace("*", "").replace("#", "").replace("##", "").replace("###", "").replace("####", "").replace("#####", "").replace("######", "").replace(">", "").replace("Ingredients:", "").replace("Instructions:", "").replace("Garnish:", "").replace("Cocktail name:", "").replace("Cocktail Name:", "").replace("Drink Name:", "")
             drink_recipe = re.sub(r"\d+\. ", "<br>🍸 ", drink_recipe)
             drink_recipe = re.sub(r"- ", "<br>🥃 ", drink_recipe)
             
@@ -99,3 +99,8 @@ def generate_drink(request):
     else:
         drinks = Drink.objects.all()
         return render(request, "drinks/generate_drink.html", {"drinks": drinks})
+
+
+def drink_index(request):
+    drinks = Drink.objects.all()
+    return render(request, "drinks/all_drinks.html", {"drinks": drinks}) 

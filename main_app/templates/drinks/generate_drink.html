@@ -23,14 +23,14 @@
 </section>
 
 <section class="drinks-list">
-  <h2>Generated Drinks</h2>
+  {% comment %} <h2>Generated Drinks</h2> {% endcomment %}
   <ul>
     {% if drinks %}
     <li>
       <strong>{{ drinks.last.name }}</strong><br />
       <strong>Ingredients:</strong> {{ drinks.last.ingredients|safe }}<br />
       <strong>Instructions:</strong> {{ drinks.last.instructions|safe }}<br />
-      <strong>Garnish:</strong> {{ drinks.last.garnish|safe }}
+      {% comment %} <strong>Garnish:</strong> {{ drinks.last.garnish|safe }} {% endcomment %}
     </li>
     {% endif %}
   </ul>

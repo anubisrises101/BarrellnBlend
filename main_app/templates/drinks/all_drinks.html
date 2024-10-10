@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/cats/cat-index.css' %}" />
+{% endblock %} {% block content %} {% if error %}
+<p style="color: red">{{ error }}</p>
+{% endif %}
+
+
+<section class="drinks-list">
+  <h2>Explore</h2>
+  <ul>
+    {% for drink in drinks %}
+    <li>
+      <strong>{{ drink.name }}</strong><br />
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+{% endblock %}

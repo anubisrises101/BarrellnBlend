@@ -30,6 +30,7 @@
         {% if user.is_authenticated %}
           <li><a href="{% url 'home' %}">Home</a></li>
           <li><a href="{% url 'generate_drink' %}">+ Mix!</a></li>
+          <li><a href="{% url 'all_drinks' %}">Explore</a></li>
           <li><a href="{% url 'about' %}">About</a></li>
           <li>
             <form id="logout-form" method="post" action="{% url 'logout' %}">
