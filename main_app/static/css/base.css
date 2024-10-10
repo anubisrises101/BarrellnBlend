@@ -1,9 +1,89 @@
+/* General body styling */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex; /* Set body as a flex container */
+    height: 100vh; /* Make the body take up the full height of the viewport */
+}
+
+/* Styling for the main content */
+main {
+    margin: 250px; /* Add left margin to account for the sidebar width */
+    padding: 20px;
+    flex-grow: 1; /* Allow main to grow and take up remaining space */
+    background-color: #f4f4f4; /* Light background color for contrast */
+    display: flex;
+    flex-direction: column; /* Flex column for stacking elements */
+    justify-content: flex-start; /* Align main content to the top */
+    align-items: flex-start; /* Align content to the start horizontally */
+    overflow-y: auto; /* Enable scrolling for long content */
+}
+
+/* Sample styling for headers and paragraphs inside main */
+main h1 {
+    color: #333; /* Darker color for headers */
+}
+
+main p {
+    color: #666; /* Lighter color for paragraph text */
+    line-height: 1.6; /* Make text more readable with line height */
+}
+
 .sidebar {
-    height: 100%;
-    width: 250px;
-    position: fixed;
+    height: 100%; /* Full height */
+    width: 15vmin; /* Set the width */
+    position: fixed; /* Stick to the side of the page */
     top: 0;
     left: 0;
-    background-color: rgb(3, 28, 3);
-    padding-top: 2vmin
+    background-color: #111; /* Background color */
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: flex-start; /* Align items to the top */
+    align-items: center; /* Center items horizontally */
+    padding-top: 20px;
+    transition: 0.3s; /* Smooth transition for hover effects */
 }
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%; /* Ensure ul takes full width of sidebar */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the list items */
+}
+
+.sidebar ul li {
+    width: 100%; /* Each item spans the full width of the sidebar */
+    padding: 1vmin;
+}
+
+.sidebar ul li a, .sidebar ul li button {
+    display: block;
+    color: white;
+    text-decoration: none;
+    font-size: 2.2vmin;
+    /* padding: 15px; */
+    text-align: center; /* Center text inside each item */
+    width: 100%; /* Take up full width of parent */
+    transition: background-color 0.3s;
+}
+
+.sidebar ul li a:hover, .sidebar ul li button:hover {
+    background-color: #575757; /* Change color on hover */
+
+}
+
+.sidebar ul li button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.sidebar ul li button:focus {
+    outline: none;
+}
+
