@@ -55,7 +55,7 @@ def generate_drink_prompt(user_input):
             {"role": "system", "content": "You are a cocktail recipe creator. Your task is to create a drink recipe based on the user's ingredients."},
             {
                 "role": "user",
-                "content": f"Create a cocktail using only: {user_input}. Include a picture, the drink name, ingredients, instructions, and garnish. Use complete sentences.",
+                "content": f"Create a cocktail using only: {user_input}. Render a picture, the drink name, ingredients, instructions. Please use complete sentences.",
             },
         ],
         max_tokens=150,
@@ -71,23 +71,21 @@ def generate_drink(request):
         if user_ingredients:
             drink_recipe = generate_drink_prompt(user_ingredients)
             # potentially remove markdown text
-            drink_recipe = drink_recipe.replace("**", "").replace("*", "").replace("#", "").replace("##", "").replace("###", "").replace("####", "").replace("#####", "").replace("######", "").replace(">", "").replace("Ingredients:", "").replace("Instructions:", "").replace("Garnish:", "").replace("Cocktail name:", "").replace("Cocktail Name:", "").replace("Drink Name:", "")
+            drink_recipe = drink_recipe.replace("**", "").replace("*", "").replace("#", "").replace("##", "").replace("###", "").replace("####", "").replace("#####", "").replace("######", "").replace(">", "").replace("Ingredients:", "").replace("Instructions:", "").replace("Cocktail name:", "").replace("Cocktail Name:", "").replace("Drink Name:", "")
             drink_recipe = re.sub(r"\d+\. ", "<br>🍸 ", drink_recipe)
-            drink_recipe = re.sub(r"- ", "<br>🥃 ", drink_recipe)
+            drink_recipe = re.sub(r"- ", "<br>📍 ", drink_recipe)
             
             # drink_recipe.replace(r"\d+\. ", "<br><br><br>")
             recipe_parts = drink_recipe.split("\n\n")
             recipe_name = recipe_parts[0] if len(recipe_parts) > 0 else ""
             recipe_ingredients = recipe_parts[1] if len(recipe_parts) > 1 else ""
             recipe_instructions = recipe_parts[2] if len(recipe_parts) > 2 else ""
-            # recipe_garnish = recipe_parts[3] if len(recipe_parts) > 3 else ""
             recipe_img_url = recipe_parts[3] if len(recipe_parts) > 3 else ""
             
             drink = Drink.objects.create(
                 name=recipe_name,
                 ingredients=recipe_ingredients,
                 instructions=recipe_instructions,
-                # garnish=recipe_garnish,
                 img_url=recipe_img_url,
                 user=request.user,
             )
