@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% load static %} {% block head %}
-<link rel="stylesheet" href="{% static 'css/cats/cat-index.css' %}" />
+<link rel="stylesheet" href="{% static 'css/drinks/generate_drink.css' %}" />
 {% endblock %} {% block content %} {% if error %}
 <p style="color: red">{{ error }}</p>
 {% endif %}
@@ -28,9 +28,17 @@
     {% if drinks %}
     <li>
       <strong>{{ drinks.last.name }}</strong><br />
+    </li>
+    <li>
       <strong>Ingredients:</strong> {{ drinks.last.ingredients|safe }}<br />
+    </li>
+    <li>
       <strong>Instructions:</strong> {{ drinks.last.instructions|safe }}<br />
+    </li>
       {% comment %} <strong>Garnish:</strong> {{ drinks.last.garnish|safe }} {% endcomment %}
+      {% if drink.img_url %}
+          <img src="{{ drink.img_url }}" alt="{{ drink.name }}" style="max-width: 200px;">
+        {% endif %}
     </li>
     {% endif %}
   </ul>
