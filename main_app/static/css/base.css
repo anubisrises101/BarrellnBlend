@@ -8,7 +8,7 @@ body {
 
 /* Styling for the main content */
 main {
-    margin: 250px; /* Add left margin to account for the sidebar width */
+    margin-left: 15vmin; /* Add left margin to account for the sidebar width */
     padding: 20px;
     flex-grow: 1; /* Allow main to grow and take up remaining space */
     background-color: #f4f4f4; /* Light background color for contrast */

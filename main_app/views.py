@@ -80,13 +80,15 @@ def generate_drink(request):
             recipe_name = recipe_parts[0] if len(recipe_parts) > 0 else ""
             recipe_ingredients = recipe_parts[1] if len(recipe_parts) > 1 else ""
             recipe_instructions = recipe_parts[2] if len(recipe_parts) > 2 else ""
-            recipe_garnish = recipe_parts[3] if len(recipe_parts) > 3 else ""
-
+            # recipe_garnish = recipe_parts[3] if len(recipe_parts) > 3 else ""
+            recipe_img_url = recipe_parts[3] if len(recipe_parts) > 3 else ""
+            
             drink = Drink.objects.create(
                 name=recipe_name,
                 ingredients=recipe_ingredients,
                 instructions=recipe_instructions,
-                garnish=recipe_garnish,
+                # garnish=recipe_garnish,
+                img_url=recipe_img_url,
                 user=request.user,
             )
             return redirect("generate_drink")
