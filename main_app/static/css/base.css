@@ -8,7 +8,6 @@ body {
 
 /* Styling for the main content */
 main {
-    background-color: red;
     margin-left: 15vmin; /* Add left margin to account for the sidebar width */
     padding: 20px;
     flex-grow: 1; /* Allow main to grow and take up remaining space */
