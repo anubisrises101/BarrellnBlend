@@ -8,6 +8,8 @@ import os, environ, openai, re
 from .models import Drink
 from django.conf import settings
 from openai import OpenAI
+from django.views.generic.edit import DeleteView
+from django.urls import reverse_lazy
 
 openai.api_key = settings.OPENAI_API_KEY
 # Create your views here.
@@ -129,3 +131,7 @@ def add_to_bar(request):
 def bar(request):
     drinks = Drink.objects.filter(user=request.user)
     return render(request, "drinks/bar.html", {"drinks": drinks})
+
+class DrinkDelete(DeleteView):
+    model = Drink
+    success_url = reverse_lazy("bar")

@@ -5,6 +5,10 @@
 {% endif %}
 
 <h2>{{ drink.name }} </h2>
+<form action="{% url 'drink-delete' drink.pk %}" method="post" style="display:inline;">
+  {% csrf_token %}
+  <button type="submit" class="delete-button">Delete</button>
+</form>
 <strong>Ingredients:</strong> {{ drink.ingredients|safe }}<br /><br />
 <strong>Instructions:</strong> {{ drink.instructions|safe }}<br /><br />
 {% if not drink.id %}
