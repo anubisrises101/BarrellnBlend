@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% load static %} {% block head %}
-<link rel="stylesheet" href="{% static 'css/cats/cat-index.css' %}" />
+<link rel="stylesheet" href="{% static 'css/base.css' %}" />
 {% endblock %} {% block content %} {% if error %}
 <p style="color: red">{{ error }}</p>
 {% endif %}
@@ -10,7 +10,7 @@
   <ul>
     {% for drink in drinks %}
     <li>
-      <strong>{{ drink.name }}</strong><br />
+      <a href="{% url 'drink_detail' drink.id %}"><strong>{{ drink.name }}</strong></a><br />
     </li>
     {% endfor %}
   </ul>

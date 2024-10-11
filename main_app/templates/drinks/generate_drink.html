@@ -13,7 +13,7 @@
       <textarea
         id="ingredients"
         name="ingredients"
-        rows="4"
+        rows="2"
         cols="50"
         required
       ></textarea>
@@ -22,26 +22,31 @@
   </form>
 </section>
 
-<section class="drinks-list">
+{% comment %} only the user that generated the drink should see theirs {% endcomment %}
+{% comment %} <section class="drinks-list"> {% endcomment %}
   {% comment %} <h2>Generated Drinks</h2> {% endcomment %}
-  <ul>
-    {% if drinks %}
-    <li>
-      <strong>{{ drinks.last.name }}</strong><br />
+  {% comment %} <ul>
+    {% if drinks %} 
+    <li> {% endcomment %}
+      {% comment %} <strong>{{ drinks.last.name }}</strong><br />
     </li>
     <li>
       <strong>Ingredients:</strong> {{ drinks.last.ingredients|safe }}<br />
     </li>
-    <li>
-      <strong>Instructions:</strong> {{ drinks.last.instructions|safe }}<br />
+    <li> {% endcomment %}
+      {% comment %} <strong>Instructions:</strong> {{ drinks.last.instructions|safe }}<br />
     </li>
       {% comment %} <strong>Garnish:</strong> {{ drinks.last.garnish|safe }} {% endcomment %}
-      {% if drink.img_url %}
-          <img src="{{ drink.img_url }}" alt="{{ drink.name }}" style="max-width: 200px;">
-        {% endif %}
-    </li>
+      {% comment %} {% if drinks.last.img_url %}
+          <img src="{{ drinks.last.img_url }}" alt="{{ drinks.last.name }}" style="max-width: 200px;">
+        {% endif %} {% endcomment %}
+    {% comment %} </li>
     {% endif %}
+    <form method="post" action="{% url 'add_to_bar' drinks.last.id %}">
+      {% csrf_token %}
+      <button type="submit">Add to My Bar</button>
+    </form> 
   </ul>
-</section>
+</section> {% endcomment %} 
 
 {% endblock %}
