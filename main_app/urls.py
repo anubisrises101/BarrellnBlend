@@ -11,4 +11,5 @@ urlpatterns = [
     path('add_to_bar/', views.add_to_bar, name='add_to_bar'),
     path('bar/', views.bar, name='bar'),
     path('drinks/<int:drink_id>/', views.drink_detail, name='drink_detail'),
+    path('drinks/<int:pk>/delete/', views.DrinkDelete.as_view(), name='drink-delete')
 ]
