@@ -8,14 +8,8 @@
   <ul>
     {% for drink in user.drinks_in_bar.all %}
       <li>
-        <strong>{{ drink.name }}</strong><br>
-        <strong>Ingredients:</strong> {{ drink.ingredients|safe }}<br>
-        <strong>Instructions:</strong> {{ drink.instructions|safe }}<br>
-        {% if drink.img_url %}
-          <img src="{{ drink.img_url }}" alt="{{ drink.name }}" style="max-width: 200px;">
-        {% endif %}
+        <a href="{% url 'drink_detail' drink.id %}"><strong>{{ drink.name }}</strong></a><br />
       </li>
     {% endfor %}
   </ul>
 {% endblock %}
-
