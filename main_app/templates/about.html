@@ -1,8 +1,11 @@
-{% extends 'base.html' %} {% block content %}
-<h1>About Barrell</h1>
-<hr />
-<div class="page-content">
-  <h3>Barrell Facts</h3>
-  {% comment %} <p>{{ fact }}</p> {% endcomment %}
+{% extends 'base.html' %} {% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/about.css' %}">
+{% endblock %}
+{% block content %}
+<div class="about-page">
+    {% comment %} <h1>About Us</h1>
+    <p>Welcome to BarrellnBlend! We are passionate about creating unique and delicious drinks.</p> {% endcomment %}
+    <!-- Add more content as needed -->
 </div>
 {% endblock %}
