@@ -16,7 +16,7 @@ class Drink(models.Model):
     instructions = models.TextField()
     # garnish = models.TextField()
     img_url = models.URLField(max_length=300, blank=True, null=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='drinks_in_bar', on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.name} ({self.id})"
