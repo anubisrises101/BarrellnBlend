@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/drinks/generate_drink.css' %}" />
+{% endblock %} {% block content %} {% if error %}
+<p style="color: red">{{ error }}</p>
+{% endif %}
+
+<h2>{{ drink.name }} </h2>
+<strong>Ingredients:</strong> {{ drink.ingredients|safe }}<br />
+<strong>Instructions:</strong> {{ drink.instructions|safe }}<br />
+{% if not drink.id %}
+<button onClick="window.location.reload();">Regenerate Drink</button>
+<form method="post" action="{% url 'add_to_bar' %}">
+  {% csrf_token %}
+  <input type="hidden" name="name" value="{{ drink.name }}">
+  <input type="hidden" name="ingredients" value="{{ drink.ingredients }}">
+  <input type="hidden" name="instructions" value="{{ drink.instructions }}">
+  <button type="submit">Add to My Bar</button>
+</form> 
+{% endif %} 
+{% endblock %}

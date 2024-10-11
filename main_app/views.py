@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.views import LoginView
@@ -40,19 +40,16 @@ def signup(request):
     form = UserCreationForm()
     context = {"form": form, "error_message": error_message}
     return render(request, "signup.html", context)
-    # Same as:
-    # return render(
-    #     request,
-    #     'signup.html',
-    #     {'form': form, 'error_message': error_message}
-    # )
 
 
 def generate_drink_prompt(user_input):
     response = openai.chat.completions.create(
-        model="gpt-4o-mini",
+        model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "You are a cocktail recipe creator. Your task is to create a drink recipe based on the user's ingredients."},
+            {
+                "role": "system",
+                "content": "You are a cocktail recipe creator. Your task is to create a drink recipe based on the user's ingredients.",
+            },
             {
                 "role": "user",
                 "content": f"Create a cocktail using only: {user_input}. Render a picture, the drink name, ingredients, instructions. Please use complete sentences.",
@@ -60,7 +57,6 @@ def generate_drink_prompt(user_input):
         ],
         max_tokens=150,
     )
-    print(response)
     return response.choices[0].message.content.strip()
 
 
@@ -70,26 +66,35 @@ def generate_drink(request):
         user_ingredients = request.POST.get("ingredients")
         if user_ingredients:
             drink_recipe = generate_drink_prompt(user_ingredients)
-            # potentially remove markdown text
-            drink_recipe = drink_recipe.replace("**", "").replace("*", "").replace("#", "").replace("##", "").replace("###", "").replace("####", "").replace("#####", "").replace("######", "").replace(">", "").replace("Ingredients:", "").replace("Instructions:", "").replace("Cocktail name:", "").replace("Cocktail Name:", "").replace("Drink Name:", "")
+            drink_recipe = (
+                drink_recipe.replace("**", "")
+                .replace("*", "")
+                .replace("#", "")
+                .replace("##", "")
+                .replace("###", "")
+                .replace("####", "")
+                .replace("#####", "")
+                .replace("######", "")
+                .replace(">", "")
+                .replace("Ingredients:", "")
+                .replace("Instructions:", "")
+                .replace("Cocktail name:", "")
+                .replace("Cocktail Name:", "")
+                .replace("Drink Name:", "")
+            )
             drink_recipe = re.sub(r"\d+\. ", "<br>🍸 ", drink_recipe)
             drink_recipe = re.sub(r"- ", "<br>📍 ", drink_recipe)
-            
-            # drink_recipe.replace(r"\d+\. ", "<br><br><br>")
             recipe_parts = drink_recipe.split("\n\n")
             recipe_name = recipe_parts[0] if len(recipe_parts) > 0 else ""
             recipe_ingredients = recipe_parts[1] if len(recipe_parts) > 1 else ""
             recipe_instructions = recipe_parts[2] if len(recipe_parts) > 2 else ""
-            recipe_img_url = recipe_parts[3] if len(recipe_parts) > 3 else ""
-            
-            drink = Drink.objects.create(
+
+            drink = Drink(
                 name=recipe_name,
                 ingredients=recipe_ingredients,
                 instructions=recipe_instructions,
-                img_url=recipe_img_url,
-                user=request.user,
             )
-            return redirect("generate_drink")
+            return render(request, "drinks/drink_detail.html", {"drink": drink})
         else:
             return render(
                 request,
@@ -101,6 +106,26 @@ def generate_drink(request):
         return render(request, "drinks/generate_drink.html", {"drinks": drinks})
 
 
+def drink_detail(request, drink_id):
+    drink = get_object_or_404(Drink, id=drink_id)
+    return render(request, "drinks/drink_detail.html", {"drink": drink})
+
+
 def drink_index(request):
     drinks = Drink.objects.all()
-    return render(request, "drinks/all_drinks.html", {"drinks": drinks}) 
+    return render(request, "drinks/all_drinks.html", {"drinks": drinks})
+
+
+def add_to_bar(request):
+    Drink.objects.create(
+        name=request.POST["name"],
+        ingredients=request.POST["ingredients"],
+        instructions=request.POST["instructions"],
+        user=request.user,
+    )
+    return redirect("bar")
+
+
+def bar(request):
+    drinks = Drink.objects.filter(user=request.user)
+    return render(request, "drinks/bar.html", {"drinks": drinks})
