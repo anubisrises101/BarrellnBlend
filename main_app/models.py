@@ -14,7 +14,6 @@ class Drink(models.Model):
     name = models.CharField(max_length=255)
     ingredients = models.TextField()
     instructions = models.TextField()
-    # garnish = models.TextField()
     img_url = models.URLField(max_length=300, blank=True, null=True)
     user = models.ForeignKey(User, related_name='drinks_in_bar', on_delete=models.CASCADE)
 
