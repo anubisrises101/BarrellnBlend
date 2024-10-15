@@ -5,15 +5,15 @@
 {% endif %}
 
 <section class="ingredient-form-container">
-  <h2>Enter Your Ingredients for a Cocktail Recipe</h2>
+  <h2>Enter Ingredients</h2>
   <form method="post" action="{% url 'generate_drink' %}">
     {% csrf_token %}
     <div class="form-group">
-      <label for="ingredients">Ingredients:</label>
+      {% comment %} <label for="ingredients">Ingredients:</label> {% endcomment %}
       <textarea
         id="ingredients"
         name="ingredients"
-        rows="2"
+        rows="1"
         cols="50"
         required
       ></textarea>
@@ -21,32 +21,5 @@
     <button type="submit">Submit</button>
   </form>
 </section>
-
-{% comment %} only the user that generated the drink should see theirs {% endcomment %}
-{% comment %} <section class="drinks-list"> {% endcomment %}
-  {% comment %} <h2>Generated Drinks</h2> {% endcomment %}
-  {% comment %} <ul>
-    {% if drinks %} 
-    <li> {% endcomment %}
-      {% comment %} <strong>{{ drinks.last.name }}</strong><br />
-    </li>
-    <li>
-      <strong>Ingredients:</strong> {{ drinks.last.ingredients|safe }}<br />
-    </li>
-    <li> {% endcomment %}
-      {% comment %} <strong>Instructions:</strong> {{ drinks.last.instructions|safe }}<br />
-    </li>
-      {% comment %} <strong>Garnish:</strong> {{ drinks.last.garnish|safe }} {% endcomment %}
-      {% comment %} {% if drinks.last.img_url %}
-          <img src="{{ drinks.last.img_url }}" alt="{{ drinks.last.name }}" style="max-width: 200px;">
-        {% endif %} {% endcomment %}
-    {% comment %} </li>
-    {% endif %}
-    <form method="post" action="{% url 'add_to_bar' drinks.last.id %}">
-      {% csrf_token %}
-      <button type="submit">Add to My Bar</button>
-    </form> 
-  </ul>
-</section> {% endcomment %} 
 
 {% endblock %}

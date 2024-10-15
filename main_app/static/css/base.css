@@ -35,7 +35,7 @@ main p {
     position: fixed; /* Stick to the side of the page */
     top: 0;
     left: 0;
-    background-color: #111; /* Background color */
+    background-color: #301500; /* Background color */
     display: flex;
     flex-direction: column; /* Stack items vertically */
     justify-content: flex-start; /* Align items to the top */
@@ -70,20 +70,89 @@ main p {
     transition: background-color 0.3s;
 }
 
-.sidebar ul li a:hover, .sidebar ul li button:hover {
-    background-color: #575757; /* Change color on hover */
 
-}
 
 .sidebar ul li button {
     background: none;
     border: none;
     color: white;
     cursor: pointer;
-    font-size: 18px;
+    /* font-size: 18px; */
+    /* hold at the bottom of the page */
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 5vmin;
 }
 
 .sidebar ul li button:focus {
     outline: none;
 }
 
+.sidebar ul li a:hover, .sidebar ul li button:hover {
+    /* background-color: #575757; Change color on hover */
+    transform: scale(1.2); /* Slightly increase size on hover */
+    /* dont let the element background go outside the nav */
+    /* overflow: hidden; */
+}
+
+
+/* highlight the li that is active */
+.sidebar ul li.active {
+    background-color: #575757;
+}
+
+/* Hamburger menu button */
+.hamburger {
+    display: none; /* Hide by default */
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000; /* Ensure it is above other elements */
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+}
+
+.hamburger div {
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Show the hamburger menu on smaller screens */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .sidebar {
+        width: 0;
+        overflow: hidden;
+        transition: width 0.3s;
+    }
+
+    .sidebar.open {
+        width: 60vw; /* Adjust as needed */
+    }
+
+    main {
+        margin-left: 0;
+    }
+}
+
+/* Transform the hamburger icon to a cross when the menu is open */
+.hamburger.open div:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open div:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open div:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}

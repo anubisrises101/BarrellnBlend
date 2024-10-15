@@ -1,0 +1,78 @@
+main {
+  background-image: url('/static/images/bar.png');
+  background-size: cover;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  width: 300px;
+}
+
+.card {
+  background-color: hsl(36.14deg 100% 67.45%);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(249, 186, 123, 0.4);
+  overflow: hidden;
+  transition: transform 0.2s;
+  padding: 1vmin;
+  text-align: center;
+  height: 10vmin
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.card-content h3 {
+  margin: 3vmin;
+  font-size: 1.2em;
+  align-items: center;
+  justify-content: center;
+  text-shadow: #838080 0px 3px 8px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.card-content p {
+  margin: 0;
+  color: #666;
+}
+
+h2 {
+  margin: 0 0 20px;
+  text-align: center;
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: linear-gradient(#f19d03, #ffc9a0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 10px 0;
+  border-bottom: 2px solid #ddd;
+}
+
+h3 {
+  text-align: center;
+  font-size: 2.5em;
+  font-weight: bold;
+  color: hsl(150.68deg 91.67% 18.82%);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
