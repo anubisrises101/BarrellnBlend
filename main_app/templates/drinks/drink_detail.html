@@ -14,7 +14,7 @@
   <strong>Ingredients:</strong> {{ drink.ingredients|safe }}<br /><br />
   <strong>Instructions:</strong> {{ drink.instructions|safe }}<br /><br />
   {% if not drink.id %}
-  <button onClick="window.location.reload();">Regenerate Drink</button>
+  <button class="regenerate-button" onClick="window.location.reload();">Regenerate</button><br /><br />
   <form method="post" action="{% url 'add_to_bar' %}">
     {% csrf_token %}
     <input type="hidden" name="name" value="{{ drink.name }}" />

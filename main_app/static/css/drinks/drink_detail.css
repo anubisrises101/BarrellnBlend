@@ -44,7 +44,7 @@ p {
   color: white;
   cursor: pointer;
   font-size: 16px;
-  /* margin-top: 20px; */
+  margin: 20px;
   padding: 10px 20px;
   transition: background-color 0.3s;
 }
@@ -62,6 +62,7 @@ p {
   font-size: 16px;
   padding: 10px 20px;
   transition: background-color 0.3s;
+  margin: 1vmin;
 }
 
 /* .drink-detail button {
@@ -87,4 +88,8 @@ p {
 
 .delete-button:hover {
   background-color: #ff1a1a;
+}
+
+.regenerate-button {
+  margin-bottom: 1vmin;
 }
