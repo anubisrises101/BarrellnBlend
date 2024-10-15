@@ -54,7 +54,7 @@ def generate_drink_prompt(user_input):
             },
             {
                 "role": "user",
-                "content": f"Create a cocktail using only: {user_input}. Render a picture, the drink name, ingredients, instructions. Please use complete sentences.",
+                "content": f"Create a cocktail using: {user_input}. Render a picture, only the drink name, ingredients, instructions. Please use complete sentences.",
             },
         ],
         max_tokens=150,
@@ -83,6 +83,8 @@ def generate_drink(request):
                 .replace("Cocktail name:", "")
                 .replace("Cocktail Name:", "")
                 .replace("Drink Name:", "")
+                .replace("Name:", "")
+                .replace("Drink name:", "")
             )
             drink_recipe = re.sub(r"\d+\. ", "<br>🍸 ", drink_recipe)
             drink_recipe = re.sub(r"- ", "<br>📍 ", drink_recipe)

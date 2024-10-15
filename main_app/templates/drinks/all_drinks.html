@@ -1,5 +1,6 @@
 {% extends 'base.html' %} {% load static %} {% block head %}
 <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+<link rel="stylesheet" href="{% static 'css/drinks/explore.css' %}" />
 {% endblock %} {% block content %} {% if error %}
 <p style="color: red">{{ error }}</p>
 {% endif %}
@@ -7,13 +8,17 @@
 
 <section class="drinks-list">
   <h2>Explore</h2>
-  <ul>
+  <div class="card-container">
     {% for drink in drinks %}
-    <li>
-      <a href="{% url 'drink_detail' drink.id %}"><strong>{{ drink.name }}</strong></a><br />
-    </li>
+    <div class="card">
+      <a href="{% url 'drink_detail' drink.id %}">
+        <div class="card-content">
+          <h3>{{ drink.name }}</h3>
+        </div>
+      </a>
+    </div>
     {% endfor %}
-  </ul>
+  </div>
 </section>
 
 {% endblock %}

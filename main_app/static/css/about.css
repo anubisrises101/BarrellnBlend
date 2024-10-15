@@ -1,4 +1,4 @@
 main {
-    background-image: url('/staticfiles/images/background.png');
+    background-image: url('/static/images/background.png');
     background-size: cover;
 }

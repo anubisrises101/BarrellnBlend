@@ -1,0 +1,90 @@
+main {
+  background-image: url('/static/images/bar.png');
+  background-size: cover;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.drink-details h2 {
+  color: linear-gradient(#f19d03, #ffc9a0);;
+  text-align: center;
+}
+
+p {
+  color: red;
+  text-align: center;
+}
+
+.drink-details {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 600px;
+  padding: 20px;
+  text-align: center;
+}
+
+.drink-details strong {
+  display: block;
+  /* margin-top: 10px; */
+  margin-bottom: -1vmin;
+  color: #000000;
+}
+
+.drink-details button {
+  background-color: #ff4d4d;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  /* margin-top: 20px; */
+  padding: 10px 20px;
+  transition: background-color 0.3s;
+}
+
+.drink-details button:hover {
+  background-color: #ff1a1a;
+}
+
+.delete-button {
+  background-color: #ff4d4d;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 20px;
+  transition: background-color 0.3s;
+}
+
+/* .drink-detail button {
+  width: 20px;
+  height: 25px;
+  border: 2px solid var(--icon, var(--trash));
+  border-radius: 1px 1px 4px 4px;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+  transition: border-color 0.3s;
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: var(--h, 20px);
+    top: 0;
+    left: var(--1, 50%);
+    background: var(--b, var(--trash-lines));
+  }
+} */
+
+.delete-button:hover {
+  background-color: #ff1a1a;
+}
