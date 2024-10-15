@@ -50,7 +50,7 @@ select {
 
 button {
   display: block;
-  margin: 2vmin auto;
+  margin: 2vmin;
   padding: 10px 20px;
   background-color: #007bff;
   color: white;
