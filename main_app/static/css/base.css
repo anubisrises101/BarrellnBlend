@@ -41,6 +41,7 @@ main p {
     justify-content: flex-start; /* Align items to the top */
     align-items: center; /* Center items horizontally */
     padding-top: 20px;
+    /* background: url('/static/images/nav.png'); */
 }
 
 .sidebar ul {
