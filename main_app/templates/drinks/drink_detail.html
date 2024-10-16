@@ -8,6 +8,7 @@
 <p>{{ error }}</p>
 {% endif %}
 
+
 <div class="drink-details">
   <h2>{{ drink.name }}</h2>
   
@@ -30,4 +31,11 @@
   </form>
   {% endif %}
 </div>
+
 {% endblock %}
+
+{% comment %} {% if not user.is_authenticated %}
+  <script type="text/javascript">
+    window.location.href = "{% url 'login' %}";
+  </script>
+{% endif %} {% endcomment %}

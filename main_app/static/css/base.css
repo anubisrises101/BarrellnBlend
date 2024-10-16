@@ -31,7 +31,7 @@ main p {
 
 .sidebar {
     height: 100%; /* Full height */
-    width: 15vmin; /* Set the width */
+    width: 16vmin; /* Set the width */
     position: fixed; /* Stick to the side of the page */
     top: 0;
     left: 0;
@@ -41,7 +41,6 @@ main p {
     justify-content: flex-start; /* Align items to the top */
     align-items: center; /* Center items horizontally */
     padding-top: 20px;
-    transition: 0.3s; /* Smooth transition for hover effects */
 }
 
 .sidebar ul {
@@ -81,7 +80,7 @@ main p {
     /* hold at the bottom of the page */
     position: absolute;
     bottom: 0;
-    margin-bottom: 5vmin;
+    margin-bottom: 4vmin;
 }
 
 .sidebar ul li button:focus {
@@ -100,9 +99,9 @@ main p {
 .sidebar ul li.active {
     background-color: #575757;
 }
-
+/* 
 /* Hamburger menu button */
-/* .hamburger {
+.hamburger {
     display: none; /* Hide by default */
     position: fixed;
     top: 20px;
@@ -113,7 +112,7 @@ main p {
     justify-content: space-around;
     width: 30px;
     height: 30px;
-} */
+}
 
 /* .hamburger div {
     width: 30px;
@@ -137,12 +136,12 @@ main p {
 
     .sidebar.open {
         width: 60vw; /* Adjust as needed */
-    }
+    /* }
 
     main {
         margin-left: 0;
     }
-} */
+} */ 
 
 /* Transform the hamburger icon to a cross when the menu is open */
 /* .hamburger.open div:nth-child(1) {
@@ -155,4 +154,5 @@ main p {
 
 .hamburger.open div:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
-} */
+} */ 
+

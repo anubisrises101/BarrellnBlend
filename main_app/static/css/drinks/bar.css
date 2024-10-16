@@ -6,7 +6,7 @@ main {
 .card-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 5vmin;
+  gap: 3vmin;
   justify-content: center;
   padding: 2vmin;
   margin-top: 2vmin;
@@ -21,6 +21,7 @@ main {
   transition: transform 0.2s;
   width: 300px;
   height: 100px;
+  align-items: center;
 }
 
 .card:hover {
@@ -47,27 +48,12 @@ main {
   align-items: center;
   text-decoration: none;
   color: #024f23;
+  align-self: center;
 }
 
 .card-content p {
   margin: 0;
   color: #666;
-}
-
-h2 {
-  margin: 0 0;
-  text-align: center;
-  font-size: 2.5em;
-  font-weight: bold;
-  color: #333;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  background: linear-gradient(#f19d03, #ffc9a0);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  padding: 0;
-  border-bottom: 2px solid #ddd;
 }
 
 /* remove decoration */

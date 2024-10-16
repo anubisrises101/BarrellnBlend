@@ -1,26 +1,21 @@
-{% extends 'base.html' %} {% load static %} {% block head %}
-<link rel="stylesheet" href="{% static 'css/home.css' %}" />
-{% endblock %} {% block content %}
-
-<section class="logo-container">
-  {% comment %} <div class="cat-container">
-    <img src="{% static 'images/splash.svg' %}" alt="The Cat Collector Cat" />
-  </div>
-  <img
-    src="{% static 'images/logotype.svg' %}"
-    alt="Text doesnt read anything reads: Cat Collector"
-  /> {% endcomment %}
-</section>
-
-{% comment %} <section class="ingredient-form-container">
-  <h2>Enter Your Ingredients for a Cocktail Recipe</h2>
-  <form method="post" action="{% url 'generate_drink' %}">
-    {% csrf_token %}
-    <div class="form-group">
-      <label for="ingredients">Ingredients:</label>
-      <textarea id="ingredients" name="ingredients" rows="1" cols="50" required></textarea>
-    </div>
-    <button type="submit">Submit</button>
-  </form>
-</section> {% endcomment %}
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
+{% block content %}
+<section class="logo">
+  <h1>Barrell<br> &Blend</h1>
+</section>
+<div class="home-container">
+    {% comment %} <h1>Welcome to Barrell & Blend</h1> {% endcomment %}
+    {% comment %} <p>Your ultimate destination for amazing drink mixes!</p> {% endcomment %}
+    {% comment %} {% if user.is_authenticated %} {% endcomment %}
+    {% comment %} {% endif %} {% endcomment %}
+  </div>
+  <div class="button-container">
+    <a href="{% url 'all_drinks' %}" class="btn">Explore Drinks</a>
+      <a href="{% url 'generate_drink' %}" class="btn">Create a Mix</a>
+  </div>
+{% endblock %}
+

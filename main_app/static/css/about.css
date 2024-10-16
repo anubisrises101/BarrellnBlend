@@ -8,9 +8,9 @@ main {
     padding: 1vmin;
     border-radius: 10px;
     margin-top: 40vh;
+    min-width: 400px;
     width: 40%;
     margin-left: 3vmin;
-    min-width: 500px;
     padding-left: 2vmin;
     padding-right: 2vmin;
 }

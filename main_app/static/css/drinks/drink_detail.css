@@ -44,7 +44,7 @@ p {
   color: white;
   cursor: pointer;
   font-size: 16px;
-  margin: 20px;
+  margin: 0.5vmin;
   padding: 10px 20px;
   transition: background-color 0.3s;
 }
@@ -62,7 +62,7 @@ p {
   font-size: 16px;
   padding: 10px 20px;
   transition: background-color 0.3s;
-  margin: 1vmin;
+  /* margin: 1vmin; */
 }
 
 /* .drink-detail button {
