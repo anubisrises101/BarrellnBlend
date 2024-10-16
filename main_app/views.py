@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -57,7 +58,8 @@ def generate_drink_prompt(user_input):
     return response.choices[0].message.content.strip()
 
 
-@csrf_exempt
+# @csrf_exempt
+@login_required(login_url='login')
 def generate_drink(request):
     if request.method == "POST":
         user_ingredients = request.POST.get("ingredients")
@@ -104,7 +106,7 @@ def generate_drink(request):
         drinks = Drink.objects.all()
         return render(request, "drinks/generate_drink.html", {"drinks": drinks})
 
-
+@login_required(login_url='login')
 def drink_detail(request, drink_id):
     drink = get_object_or_404(Drink, id=drink_id)
     return render(request, "drinks/drink_detail.html", {"drink": drink})

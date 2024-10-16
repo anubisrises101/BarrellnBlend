@@ -32,14 +32,14 @@
           <li>
             <form id="logout-form" method="post" action="{% url 'logout' %}">
               {% csrf_token %}
-              <button type="submit">Log out</button>
+              <button type="submit">Logout</button>
             </form>
           </li>
         {% else %}
           <li><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="{% url 'login' %}">Sign In</a></li>
-          <li><a href="{% url 'signup' %}">Sign Up</a></li>
           <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'login' %}">Sign In</a></li>
+          {% comment %} <li><a href="{% url 'signup' %}">Sign Up</a></li> {% endcomment %}
         {% endif %}
       </ul>
       </nav>
