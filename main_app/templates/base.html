@@ -1,16 +1,26 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% comment %} <link
-      rel="shortcut icon"
-      type="image/png"
-      href="{% static 'images/splash.svg' %}"
-    /> {% endcomment %}
+    <link
+      href="{% static 'fontawesomefree/css/fontawesome.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{% static 'fontawesomefree/css/brands.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{% static 'fontawesomefree/css/solid.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="icon" href="{% static 'images/olive.png' %}" type="image/x-icon" />
     <title>Barrell & Blend</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     {% block head %} {% endblock %}
@@ -18,30 +28,62 @@
   <body>
     <header>
       <div class="header-logo-container">
-        <a href="/">
-        </a>
+        <a href="/"> </a>
       </div>
-    <nav class="sidebar">
-      <ul>
-        {% if user.is_authenticated %}
-          <li><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="{% url 'bar' %}">My Bar</a></li>
-          <li><a href="{% url 'all_drinks' %}">Explore</a></li>
-          <li><a href="{% url 'generate_drink' %}">+ Mix</a></li>
-          <li><a href="{% url 'about' %}">About</a></li>
+      <nav class="sidebar">
+        <ul>
+          {% if user.is_authenticated %}
+          <li>
+            <a href="{% url 'home' %}"
+              ><i class="fa-solid fa-house"></i> Home</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'bar' %}"
+              ><i class="fa-solid fa-martini-glass"></i> My Bar</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'all_drinks' %}"
+              ><i class="fa-solid fa-globe fa-spin"></i> Explore</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'generate_drink' %}"
+              ><i class="fa-solid fa-flask fa-beat"></i> Mix</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'about' %}"
+              ><i class="fa-solid fa-circle-info"></i> About</a
+            >
+          </li>
           <li>
             <form id="logout-form" method="post" action="{% url 'logout' %}">
               {% csrf_token %}
-              <button type="submit">Logout</button>
+              <button type="submit">
+                Logout <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              </button>
             </form>
           </li>
-        {% else %}
-          <li><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="{% url 'about' %}">About</a></li>
-          <li><a href="{% url 'login' %}">Sign In</a></li>
-          {% comment %} <li><a href="{% url 'signup' %}">Sign Up</a></li> {% endcomment %}
-        {% endif %}
-      </ul>
+          {% else %}
+          <li>
+            <a href="{% url 'home' %}"
+              ><i class="fa-solid fa-house"></i> Home</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'about' %}"
+              ><i class="fa-solid fa-circle-info"></i> About</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'login' %}"
+              ><i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In</a
+            >
+          </li>
+          {% endif %}
+        </ul>
       </nav>
     </header>
     <main>{% block content %} {% endblock %}</main>

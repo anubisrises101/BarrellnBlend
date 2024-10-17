@@ -9,16 +9,16 @@
   <form method="post" action="{% url 'generate_drink' %}">
     {% csrf_token %}
     <div class="form-group">
-      {% comment %} <label for="ingredients">Ingredients:</label> {% endcomment %}
       <textarea
         id="ingredients"
         name="ingredients"
         rows="1"
         cols="50"
         required
+        placeholder="Enter ingredients separated by commas"
       ></textarea>
     </div>
-    <button type="submit">Submit</button>
+    <button class="submit" type="submit">Submit</button>
   </form>
 </section>
 

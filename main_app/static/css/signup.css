@@ -1,0 +1,105 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #03421c;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  background: linear-gradient(#5d2d0a, #c95723);
+}
+
+.page-header {
+  text-align: center;
+  align-items: center;
+  padding: 20px 0;
+  /* background: linear-gradient(135deg, #6e8efb, #a777e3); */
+  color: white;
+  border-radius: 8px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.page-header h1 {
+  display: flex;
+  justify-content: center;
+  font-size: 2.5em;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  align-self: center;
+  align-items: center;
+  color: white;
+}
+
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-right: 35px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.form-container table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+
+.form-container th,
+.form-container td {
+  padding: 10px;
+  text-align: left;
+}
+.form-container th {
+  align-content: flex-start;
+  padding-top: 3vmin;
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.btn.submit {
+  background-color: #024f20;
+  color: white;
+  padding: 15px 20px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 1em;
+  transition: background-color 0.3s, transform 0.3s;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  width: 38%;
+}
+
+
+
+.btn.submit:hover {
+  background-color: #02270c;
+  transform: scale(1.05);
+}
+
+.red-text {
+  color: red;
+  text-align: center;
+}
+
+#id_password2 {
+  margin-top: 1.5vmin;
+}
+
+td ul {
+  padding-left: 3vmin;
+ 
+}

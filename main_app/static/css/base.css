@@ -77,11 +77,12 @@ main p {
     border: none;
     color: white;
     cursor: pointer;
-    /* font-size: 18px; */
+    /* font-size: 15px; */
     /* hold at the bottom of the page */
     position: absolute;
     bottom: 0;
     margin-bottom: 4vmin;
+    width: 100%;
 }
 
 .sidebar ul li button:focus {
@@ -96,64 +97,4 @@ main p {
 }
 
 
-/* highlight the li that is active */
-.sidebar ul li.active {
-    background-color: #575757;
-}
-/* 
-/* Hamburger menu button */
-.hamburger {
-    display: none; /* Hide by default */
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 1000; /* Ensure it is above other elements */
-    cursor: pointer;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 30px;
-}
-
-/* .hamburger div {
-    width: 30px;
-    height: 3px;
-    background-color: white;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-} */
-
-/* Show the hamburger menu on smaller screens */
-/* @media (max-width: 768px) {
-    .hamburger {
-        display: flex;
-    }
-
-    .sidebar {
-        width: 0;
-        overflow: hidden;
-        transition: width 0.3s;
-    }
-
-    .sidebar.open {
-        width: 60vw; /* Adjust as needed */
-    /* }
-
-    main {
-        margin-left: 0;
-    }
-} */ 
-
-/* Transform the hamburger icon to a cross when the menu is open */
-/* .hamburger.open div:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.hamburger.open div:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.open div:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-} */ 
 

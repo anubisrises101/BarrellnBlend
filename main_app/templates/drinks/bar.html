@@ -12,7 +12,7 @@
 <section class="drink-list">
   <h2>{{ request.user.username }}'s Bar</h2>
   <div class="card-container">
-    {% for drink in user.drinks_in_bar.all %}
+    {% for drink in drinks %}
     <a href="{% url 'drink_detail' drink.id %}" class="card-link">
       <div class="card">
         <div class="card-content">
