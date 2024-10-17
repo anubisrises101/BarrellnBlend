@@ -21,6 +21,7 @@ body {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  animation: slideUp 1s ease-out;
 }
 
 h2 {
@@ -82,3 +83,13 @@ textarea {
   align-self: center;
 }
 
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

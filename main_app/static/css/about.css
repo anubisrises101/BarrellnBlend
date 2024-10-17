@@ -13,6 +13,7 @@ main {
     margin-left: 3vmin;
     padding-left: 2vmin;
     padding-right: 2vmin;
+    animation: slideUp 1s ease-out;
 }
 
 .about-page h1 {
@@ -22,3 +23,14 @@ main {
 .about-page p {
     color: white;
 }   
+
+@keyframes slideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }

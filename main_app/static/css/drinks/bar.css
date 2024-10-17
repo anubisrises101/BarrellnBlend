@@ -10,6 +10,7 @@ section.drink-list {
   justify-content: center;
   margin-top: 2vmin;
   width: 100%;
+  animation: slideUp 1s ease-out;
 }
 
 .card-container {
@@ -69,4 +70,15 @@ section.drink-list {
 
 a {
   text-decoration: none;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
