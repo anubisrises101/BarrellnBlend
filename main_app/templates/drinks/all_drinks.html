@@ -11,9 +11,11 @@
   <div class="card-container">
     {% for drink in drinks %}
     <div class="card">
+      <input type="hidden" name="next" value="{{ request.GET.next }}">
       <a href="{% url 'drink_detail' drink.id %}">
         <div class="card-content">
           <h3>{{ drink.name }}</h3>
+          <p><em>Created by <strong>{{ drink.user.username }}</strong> on {{ drink.created_at|date:"F j, Y" }}</em></p>
         </div>
       </a>
     </div>

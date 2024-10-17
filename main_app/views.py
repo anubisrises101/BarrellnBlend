@@ -50,7 +50,7 @@ def generate_drink_prompt(user_input):
             },
             {
                 "role": "user",
-                "content": f"Create a cocktail using: {user_input}. Render a picture, only the drink name, ingredients, instructions. Please use complete sentences.",
+                "content": f"Create a cocktail using: {user_input}. Only create the drink name, ingredients, instructions. Please use complete sentences.",
             },
         ],
         max_tokens=150,
@@ -59,7 +59,7 @@ def generate_drink_prompt(user_input):
 
 
 # @csrf_exempt
-@login_required(login_url='login')
+@login_required(login_url="login")
 def generate_drink(request):
     if request.method == "POST":
         user_ingredients = request.POST.get("ingredients")
@@ -106,29 +106,61 @@ def generate_drink(request):
         drinks = Drink.objects.all()
         return render(request, "drinks/generate_drink.html", {"drinks": drinks})
 
-@login_required(login_url='login')
+
+@login_required(login_url="login")
 def drink_detail(request, drink_id):
     drink = get_object_or_404(Drink, id=drink_id)
-    return render(request, "drinks/drink_detail.html", {"drink": drink})
+    is_user_in_bar = request.user.drinks.filter(id=drink_id).exists()
+    return render(
+        request,
+        "drinks/drink_detail.html",
+        {"drink": drink, "is_user_in_bar": is_user_in_bar},
+    )
 
 
 def drink_index(request):
-    drinks = Drink.objects.all()
+    drinks = Drink.objects.all().order_by("-created_at")
     return render(request, "drinks/all_drinks.html", {"drinks": drinks})
 
 
+@login_required
 def add_to_bar(request):
-    Drink.objects.create(
-        name=request.POST["name"],
-        ingredients=request.POST["ingredients"],
-        instructions=request.POST["instructions"],
-        user=request.user,
-    )
+    if request.method == "POST":
+        name = request.POST.get("name")
+        ingredients = request.POST.get("ingredients")
+        instructions = request.POST.get("instructions")
+
+        # Check if the drink already exists in the database with the same name, ingredients, and instructions
+        drink = Drink.objects.filter(
+            name=name, ingredients=ingredients, instructions=instructions
+        ).first()
+
+        if not drink:
+            # If the drink does not exist, create it
+            drink = Drink.objects.create(
+                user=request.user,
+                name=name,
+                ingredients=ingredients,
+                instructions=instructions,
+            )
+
+        # Add the new drink to the user's 'bar'
+        request.user.drinks.add(drink)
+
+        return redirect("bar")  # Redirect to the user's bar page
+    return redirect("explore")
+
+
+@login_required
+def remove_from_bar(request, drink_id):
+    request.user.drinks.remove(drink_id)
     return redirect("bar")
 
 
+@login_required
 def bar(request):
-    drinks = Drink.objects.filter(user=request.user)
+    drinks = request.user.drinks.all()
+    print(drinks)
     return render(request, "drinks/bar.html", {"drinks": drinks})
 
 

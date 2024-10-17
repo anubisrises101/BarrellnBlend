@@ -9,6 +9,7 @@ main {
   gap: 20px;
   justify-content: center;
   padding: 20px;
+  animation: slideUp 1s ease-out;
 }
 
 div.card {
@@ -83,4 +84,17 @@ div.card-content {
   align-self: center;
   /* margin-top: 1vmin; */
   /* height: 100%; */
+  animation: slideUp 1s ease-out;
 }
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+

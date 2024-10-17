@@ -1,21 +1,18 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block head %}
+{% extends 'base.html' %} {% load static %} {% block head %}
 <link rel="stylesheet" href="{% static 'css/drinks/drink_detail.css' %}" />
-{% endblock %}
-{% block content %}
-{% if error %}
+{% endblock %} {% block content %} {% if error %}
 <p>{{ error }}</p>
 {% endif %}
 
-
 <div class="drink-details">
   <h2>{{ drink.name }}</h2>
-  
+
   <strong>Ingredients:</strong> {{ drink.ingredients|safe }}<br /><br />
   <strong>Instructions:</strong> {{ drink.instructions|safe }}<br /><br />
   {% if not drink.id %}
-  <button class="regenerate-button" onClick="window.location.reload();">Regenerate</button><br /><br />
+  <button class="regenerate-button" onClick="window.location.reload();">
+    Regenerate</button
+  ><br /><br />
   <form method="post" action="{% url 'add_to_bar' %}">
     {% csrf_token %}
     <input type="hidden" name="name" value="{{ drink.name }}" />
@@ -23,19 +20,37 @@
     <input type="hidden" name="instructions" value="{{ drink.instructions }}" />
     <button type="submit">Add to My Bar</button>
   </form>
+  {% endif %}{% if user == drink.user %} 
+  <form
+    action="{% url 'drink-delete' drink.pk %}"
+    method="post"
+    style="display: inline"
+  >
+    {% csrf_token %}
+    <button type="submit" class="delete-button">Delete</button>
+  </form>
   {% endif %}
-  {% if drink.id %}
-  <form action="{% url 'drink-delete' drink.pk %}" method="post" style="display: inline">
-      {% csrf_token %}
-      <button type="submit" class="delete-button">Delete</button>
+  {% if is_user_in_bar  %} 
+  <h2>{{ user_bar.drink.name }}</h2>
+  <form
+    action="{% url 'remove_from_bar' drink.pk %}"
+    method="post"
+    style="display: inline"
+  >
+    {% csrf_token %}
+    <button type="submit" class="delete-button">Remove from Bar</button>
+  </form>
+  {% endif %} 
+  {% if not is_user_in_bar and drink.id != null %}
+  <form method="post" action="{% url 'add_to_bar' %}">
+    {% comment %} {%if drink.id%} {% endcomment %}
+    {% csrf_token %}
+    <input type="hidden" name="name" value="{{ drink.name }}" />
+    <input type="hidden" name="ingredients" value="{{ drink.ingredients }}" />
+    <input type="hidden" name="instructions" value="{{ drink.instructions }}" />
+    <button type="submit">Add to My Bar</button>
   </form>
   {% endif %}
 </div>
 
 {% endblock %}
-
-{% comment %} {% if not user.is_authenticated %}
-  <script type="text/javascript">
-    window.location.href = "{% url 'login' %}";
-  </script>
-{% endif %} {% endcomment %}
