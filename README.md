@@ -1,4 +1,4 @@
-# Barrel & Blend
+# Barrell & Blend
 
 ## A Cocktail Recipe Generator Based on Your Ingredients
 
