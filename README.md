@@ -6,7 +6,7 @@ Welcome to Barrel & Blend, a web application designed to help you create delicio
 
 ![Barrel & Blend Logo](https://i.imgur.com/nSSNFrF.png)
 
-### [Visit the Deployed Website](lihttps://barrellandblend-6d3f0840a2d5.herokuapp.com/)
+### [Visit the Deployed Website](https://barrellandblend-6d3f0840a2d5.herokuapp.com/)
 
 ## Table of Contents
 
