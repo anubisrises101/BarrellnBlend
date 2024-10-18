@@ -4,7 +4,7 @@
 
 Welcome to Barrel & Blend, a web application designed to help you create delicious cocktails using ingredients you already have at home! Simply input the ingredients you want to use, and the app will leverage the OpenAI API to generate creative cocktail recipes tailored to your preferences.
 
-![Barrel & Blend Logo](https://i.imgur.com/nSSNFrF.png)
+![Barrell & Blend Logo](https://i.imgur.com/nSSNFrF.png)
 
 ### [Visit the Deployed Website](https://barrellandblend-6d3f0840a2d5.herokuapp.com/)
 
